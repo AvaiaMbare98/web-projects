@@ -1,0 +1,1 @@
+Here I'll write the skills I've learned building this project once it'll be completed. 
