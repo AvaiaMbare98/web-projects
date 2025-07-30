@@ -6,13 +6,16 @@ body {
     flex-direction: column;
 }
 
-header,
-a {
+header {
     background-color: #1f2937;
-    color: #e5e7eb;
-    font-size: 18px;
     margin: 0px;
     padding: 0px;
+}
+
+header,
+a {
+    color: #e5e7eb;
+    font-size: 18px;
 }
 
 img {
@@ -60,12 +63,9 @@ a:hover {
 }
 
 button {
-    background-color: #3882f6;
-    color: #e5e7eb; 
+    background-color: #3882f6; 
     border-radius: 15px;
     border: none;
     text-align: center;
     padding: 16px 32px;
-    font-size: 18px;
-    font-weight: 700;
 }
