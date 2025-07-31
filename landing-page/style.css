@@ -1,5 +1,6 @@
 body {
     font-family: Roboto, sans-serif;
+    color:#e5e7eb;
     min-height: 100vh;
     margin: 0;
     display: flex;
@@ -62,7 +63,8 @@ a:hover {
     margin-right: auto;
 }
 
-.push-left a {
+.push-left a,
+.cta {
     color: #f9faf8;
     font-size: 24px;
     font-weight:700;
@@ -81,13 +83,17 @@ button {
     background-color: #3882f6; 
     border-radius: 15px;
     border: none;
-    text-align: center;
+    text-align:center;
     padding: 16px 32px;
+    height:40px;
+    width:fit-content;
+    display:inline-flex;
+    align-items: center;
 }
 
 .info {
     display: flex;
-    padding: 0 250px;
+    padding: 0 250px 100px 250px;
     justify-content:space-evenly;
     gap:40px;
     flex-wrap: wrap;
@@ -107,4 +113,66 @@ button {
     flex-direction: column;
     flex: 1 0 150px;
     color:#6D747D;
+}
+
+.quote {
+    background-color:#e5e7eb; 
+    color:#1f2937;
+    display:flex;
+    flex-direction:column;
+    padding: 100px 250px;
+}
+
+.quote-text {
+    text-align:left;
+    font-weight: 100;
+    font-style:italic;
+    font-size: 36px;
+}
+
+.quote-author {
+    font-weight:900;
+    align-self: flex-end;
+    margin-top:-30px;
+    padding-right:30px;
+}
+
+section {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+
+.sign-up {
+    width: 480px;
+    background-color: #3882f6;
+    display:flex;
+    padding:25px 25px 25px 75px;
+    margin:100px 0;
+    justify-content:center;
+    max-height:100px;
+    width:700px;
+    gap:48px;
+    border-radius:15px;
+    box-shadow:5px 5px 2.5px lightblue;
+}
+
+.sign-up button {
+    border:solid #e5e7eb;
+    align-self:center;
+}
+
+.sign-up button:hover {
+    background-color: #e5e7eb;
+    border:none;
+}
+
+.sign-up button:hover a {
+    color:#3882f6;
+    text-decoration:underline;
+}
+
+.cta {
+    margin-bottom: -15px;
 }
