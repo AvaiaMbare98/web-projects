@@ -78,21 +78,26 @@ function playGame(){
         console.log(message);
     
         humanChoice = getHumanChoice(); 
-        if(humanChoice === "Rock" || humanChoice === "Paper" || humanChoice === "Scissors"){
+        if(humanChoice === "Rock" || 
+            humanChoice === "Paper" || 
+            humanChoice === "Scissors"){
             computerChoice = getComputerChoice();
         
-            message = `You choose ${humanChoice} while the computer choose ${computerChoice}`;
+            message = `You choose ${humanChoice} while 
+                    the computer choose ${computerChoice}`;
             console.log(message);
         
             let score = clash(humanChoice, computerChoice);
             if(score === 1){
                 humanScore++;
-                message = `Hooray, you won a round!\nYour score: ${humanScore}\nComputer score: ${computerScore}`;
+                message = `Hooray, you won a round!\nYour score: 
+                        ${humanScore}\nComputer score: ${computerScore}`;
                 console.log(message);
             }
             else if(score === -1){
                 computerScore++;
-                message = `Damn, computer won a round!\nYour score: ${humanScore}\nComputer score: ${computerScore}`;
+                message = `Damn, computer won a round!\nYour score: 
+                        ${humanScore}\nComputer score: ${computerScore}`;
                 console.log(message);
             }
     
