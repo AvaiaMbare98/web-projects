@@ -79,6 +79,15 @@ function playGame(){
     para.appendChild(scissors);
     para.appendChild(del);
 
+    const results = document.createElement("div");
+    para.appendChild(results);
+
+    del.addEventListener("click", () => {
+        while(results.firstChild){
+            results.removeChild(results.lastChild);
+        }
+    });
+
     rock.addEventListener("click", () => {
         const computerChoice = getComputerChoice();
         const humanChoice = "Rock";
@@ -86,7 +95,7 @@ function playGame(){
         const message = document.createElement("p");
         message.textContent = `Turn number ${turn}: you choose ${humanChoice} while 
                 the computer choose ${computerChoice}\n`;
-        para.appendChild(message);
+        results.appendChild(message);
 
         if(score === -1){
             computerScore++;
@@ -95,7 +104,7 @@ function playGame(){
                 `Computer won this round!
                 Computer: ${computerScore}
                 You: ${humanScore}`;
-            message.appendChild(text);
+            results.appendChild(text);
         }
 
         if(score === 1){
@@ -105,7 +114,7 @@ function playGame(){
                 `You won this round!
                 Computer: ${computerScore}
                 You: ${humanScore}`;
-            message.appendChild(text);
+            results.appendChild(text);
         }
         turn++;
     });
@@ -117,7 +126,7 @@ function playGame(){
         const message = document.createElement("p");
         message.textContent = `Turn number ${turn}: you choose ${humanChoice} while 
                 the computer choose ${computerChoice}\n`;
-        para.appendChild(message);
+        results.appendChild(message);
 
         if(score === -1){
             computerScore++;
@@ -126,7 +135,7 @@ function playGame(){
                 `Computer won this round!
                 Computer: ${computerScore}
                 You: ${humanScore}`;
-            message.appendChild(text);
+            results.appendChild(text);
         }
 
         if(score === 1){
@@ -136,29 +145,57 @@ function playGame(){
                 `You won this round!
                 Computer: ${computerScore}
                 You: ${humanScore}`;
-            message.appendChild(text);
+            results.appendChild(text);
         }
         turn++;
     });
 
-    // let score = clash(humanChoice, computerChoice);
-    // if(score === 1){
-    //     humanScore++;
-    //     message = `Hooray, you won a round!\nYour score: 
-    //             ${humanScore}\nComputer score: ${computerScore}`;
-    //     console.log(message);
-    // }
-    // else if(score === -1){
-    //     computerScore++;
-    //     message = `Damn, computer won a round!\nYour score: 
-    //             ${humanScore}\nComputer score: ${computerScore}`;
-    //     console.log(message);
-    // }
+    paper.addEventListener("click", () => {
+        const computerChoice = getComputerChoice();
+        const humanChoice = "Paper";
+        score = clash(humanChoice, computerChoice);
+        const message = document.createElement("p");
+        message.textContent = `Turn number ${turn}: you choose ${humanChoice} while 
+                the computer choose ${computerChoice}\n`;
+        results.appendChild(message);
 
-    // turn++;
+        if(score === -1){
+            computerScore++;
+            const text = document.createElement("p");
+            text.textContent = 
+                `Computer won this round!
+                Computer: ${computerScore}
+                You: ${humanScore}`;
+            results.appendChild(text);
+        }
 
-    // if(humanScore === 3) console.log(`Congrats! You won!`);
-    // if(computerScore === 3) console.log(`Damn... you lost...`);
+        if(score === 1){
+            humanScore++;
+            const text = document.createElement("p");
+            text.textContent = 
+                `You won this round!
+                Computer: ${computerScore}
+                You: ${humanScore}`;
+            results.appendChild(text);
+        }
+        turn++;
+
+        if(humanScore === 5 || computerScore === 5){
+            while(results.firstChild){
+                results.removeChild(results.lastChild);
+            }
+            if(humanScore === 5){
+                const winMessage = document.createElement("p");
+                winMessage.textContent = `YOU WON! CONGRATS!`;
+                results.appendChild(winMessage);
+            }
+            else{
+                const winMessage = document.createElement("p");
+                winMessage.textContent = `Damn... computer won...`;
+                results.appendChild(winMessage);
+            }
+        }
+    });
 
 }
 
