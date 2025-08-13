@@ -2,9 +2,7 @@
 //1 = Paper
 //2 = Scissors
 
-let choice;
-let humanChoice;
-let computerChoice;
+let score;
 let humanScore = 0;
 let computerScore = 0;
 let turn = 0;
@@ -25,19 +23,6 @@ function getComputerChoice() {
         return "Scissors";
     }
 }
-
-// function getHumanChoice() {
-//     const input = 0; 
-    
-//     let choice = parseInt(input);
-//     switch(choice) {
-//         case 0: return "Rock";
-//         case 1: return "Paper";
-//         case 2: return "Scissors";
-//         default:
-//             alert("Wrong choice, please select an integer between 0 and 2");
-//     }
-// }
 
 function clash(human, computer) { //funzione che restituisce -1, 0 o 1: -1 punto per il computer, 0 pari, 1 punto dell'umano
     if(human === "Rock") {
@@ -74,6 +59,7 @@ function clash(human, computer) { //funzione che restituisce -1, 0 o 1: -1 punto
 
 function playGame(){
 
+    let turn = 1;
     const para = document.createElement("p");
     document.body.appendChild(para);
 
@@ -86,40 +72,42 @@ function playGame(){
     const scissors = document.createElement("button");
     scissors.textContent = "I choose scissors!";
     scissors.setAttribute("id", "scissors");
+    const del = document.createElement("button");
+    del.textContent = "Reset";
+    del.setAttribute("id", "delete");
 
     para.appendChild(rock);
     para.appendChild(paper);
     para.appendChild(scissors);
+    para.appendChild(del);
 
-    // let message = `Round number ${turn+1}!`
-    // console.log(message);
+    rock.addEventListener("click", () => {
+        const computerChoice = getComputerChoice();
+        const humanChoice = "Rock";
+        score = clash(humanChoice, computerChoice);
+        const message = document.createElement("p");
+        message.textContent = `Turn number ${turn}: you choose ${humanChoice} while 
+                the computer choose ${computerChoice}`;
+        para.appendChild(message);
+        turn++;
+    });
 
-    // humanChoice = getHumanChoice(); 
-    // if(humanChoice === "Rock" || 
-    //     humanChoice === "Paper" || 
-    //     humanChoice === "Scissors"){
-    //     computerChoice = getComputerChoice();
-    
-    //     message = `You choose ${humanChoice} while 
-    //             the computer choose ${computerChoice}`;
+    // let score = clash(humanChoice, computerChoice);
+    // if(score === 1){
+    //     humanScore++;
+    //     message = `Hooray, you won a round!\nYour score: 
+    //             ${humanScore}\nComputer score: ${computerScore}`;
     //     console.log(message);
-    
-    //     let score = clash(humanChoice, computerChoice);
-    //     if(score === 1){
-    //         humanScore++;
-    //         message = `Hooray, you won a round!\nYour score: 
-    //                 ${humanScore}\nComputer score: ${computerScore}`;
-    //         console.log(message);
-    //     }
-    //     else if(score === -1){
-    //         computerScore++;
-    //         message = `Damn, computer won a round!\nYour score: 
-    //                 ${humanScore}\nComputer score: ${computerScore}`;
-    //         console.log(message);
-    //     }
-
-    //     turn++;
     // }
+    // else if(score === -1){
+    //     computerScore++;
+    //     message = `Damn, computer won a round!\nYour score: 
+    //             ${humanScore}\nComputer score: ${computerScore}`;
+    //     console.log(message);
+    // }
+
+    // turn++;
+
     // if(humanScore === 3) console.log(`Congrats! You won!`);
     // if(computerScore === 3) console.log(`Damn... you lost...`);
 
