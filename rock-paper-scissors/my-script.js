@@ -2,11 +2,6 @@
 //1 = Paper
 //2 = Scissors
 
-let score;
-let humanScore = 0;
-let computerScore = 0;
-let turn = 0;
-
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -58,8 +53,11 @@ function clash(human, computer) { //funzione che restituisce -1, 0 o 1: -1 punto
 }
 
 function playGame(){
-
+    let score = 0;
+    let humanScore = 0;
+    let computerScore = 0;
     let turn = 1;
+
     const para = document.createElement("p");
     document.body.appendChild(para);
 
@@ -87,8 +85,28 @@ function playGame(){
         score = clash(humanChoice, computerChoice);
         const message = document.createElement("p");
         message.textContent = `Turn number ${turn}: you choose ${humanChoice} while 
-                the computer choose ${computerChoice}`;
+                the computer choose ${computerChoice}\n`;
         para.appendChild(message);
+
+        if(score === -1){
+            computerScore++;
+            const text = document.createElement("p");
+            text.textContent = 
+                `Computer won this round!
+                Computer: ${computerScore}
+                You: ${humanScore}`;
+            message.appendChild(text);
+        }
+
+        if(score === 1){
+            humanScore++;
+            const text = document.createElement("p");
+            text.textContent = 
+                `You won this round!
+                Computer: ${computerScore}
+                You: ${humanScore}`;
+            message.appendChild(text);
+        }
         turn++;
     });
 
