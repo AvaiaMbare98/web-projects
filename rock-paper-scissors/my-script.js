@@ -110,6 +110,37 @@ function playGame(){
         turn++;
     });
 
+    scissors.addEventListener("click", () => {
+        const computerChoice = getComputerChoice();
+        const humanChoice = "Scissors";
+        score = clash(humanChoice, computerChoice);
+        const message = document.createElement("p");
+        message.textContent = `Turn number ${turn}: you choose ${humanChoice} while 
+                the computer choose ${computerChoice}\n`;
+        para.appendChild(message);
+
+        if(score === -1){
+            computerScore++;
+            const text = document.createElement("p");
+            text.textContent = 
+                `Computer won this round!
+                Computer: ${computerScore}
+                You: ${humanScore}`;
+            message.appendChild(text);
+        }
+
+        if(score === 1){
+            humanScore++;
+            const text = document.createElement("p");
+            text.textContent = 
+                `You won this round!
+                Computer: ${computerScore}
+                You: ${humanScore}`;
+            message.appendChild(text);
+        }
+        turn++;
+    });
+
     // let score = clash(humanChoice, computerChoice);
     // if(score === 1){
     //     humanScore++;
