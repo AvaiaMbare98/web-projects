@@ -26,18 +26,18 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let input = prompt("Select a number between 0 and 2\n0 = Rock\n1 = Paper\n2 = Scissors");
+// function getHumanChoice() {
+//     const input = 0; 
     
-    let choice = parseInt(input);
-    switch(choice) {
-        case 0: return "Rock";
-        case 1: return "Paper";
-        case 2: return "Scissors";
-        default:
-            alert("Wrong choice, please select an integer between 0 and 2");
-    }
-}
+//     let choice = parseInt(input);
+//     switch(choice) {
+//         case 0: return "Rock";
+//         case 1: return "Paper";
+//         case 2: return "Scissors";
+//         default:
+//             alert("Wrong choice, please select an integer between 0 and 2");
+//     }
+// }
 
 function clash(human, computer) { //funzione che restituisce -1, 0 o 1: -1 punto per il computer, 0 pari, 1 punto dell'umano
     if(human === "Rock") {
@@ -73,42 +73,57 @@ function clash(human, computer) { //funzione che restituisce -1, 0 o 1: -1 punto
 }
 
 function playGame(){
-    while(humanScore < 3 && computerScore < 3){
-        let message = `Round number ${turn+1}!`
-        console.log(message);
+
+    const para = document.createElement("p");
+    document.body.appendChild(para);
+
+    const rock = document.createElement("button");
+    rock.textContent = "I choose rock!";
+    rock.setAttribute("id", "rock");
+    const paper = document.createElement("button");
+    paper.textContent = "I choose paper!";
+    paper.setAttribute("id", "paper");
+    const scissors = document.createElement("button");
+    scissors.textContent = "I choose scissors!";
+    scissors.setAttribute("id", "scissors");
+
+    para.appendChild(rock);
+    para.appendChild(paper);
+    para.appendChild(scissors);
+
+    // let message = `Round number ${turn+1}!`
+    // console.log(message);
+
+    // humanChoice = getHumanChoice(); 
+    // if(humanChoice === "Rock" || 
+    //     humanChoice === "Paper" || 
+    //     humanChoice === "Scissors"){
+    //     computerChoice = getComputerChoice();
     
-        humanChoice = getHumanChoice(); 
-        if(humanChoice === "Rock" || 
-            humanChoice === "Paper" || 
-            humanChoice === "Scissors"){
-            computerChoice = getComputerChoice();
-        
-            message = `You choose ${humanChoice} while 
-                    the computer choose ${computerChoice}`;
-            console.log(message);
-        
-            let score = clash(humanChoice, computerChoice);
-            if(score === 1){
-                humanScore++;
-                message = `Hooray, you won a round!\nYour score: 
-                        ${humanScore}\nComputer score: ${computerScore}`;
-                console.log(message);
-            }
-            else if(score === -1){
-                computerScore++;
-                message = `Damn, computer won a round!\nYour score: 
-                        ${humanScore}\nComputer score: ${computerScore}`;
-                console.log(message);
-            }
+    //     message = `You choose ${humanChoice} while 
+    //             the computer choose ${computerChoice}`;
+    //     console.log(message);
     
-            turn++;
-        }
-    
-    }
-    if(humanScore === 3) console.log(`Congrats! You won!`);
-    if(computerScore === 3) console.log(`Damn... you lost...`);
+    //     let score = clash(humanChoice, computerChoice);
+    //     if(score === 1){
+    //         humanScore++;
+    //         message = `Hooray, you won a round!\nYour score: 
+    //                 ${humanScore}\nComputer score: ${computerScore}`;
+    //         console.log(message);
+    //     }
+    //     else if(score === -1){
+    //         computerScore++;
+    //         message = `Damn, computer won a round!\nYour score: 
+    //                 ${humanScore}\nComputer score: ${computerScore}`;
+    //         console.log(message);
+    //     }
+
+    //     turn++;
+    // }
+    // if(humanScore === 3) console.log(`Congrats! You won!`);
+    // if(computerScore === 3) console.log(`Damn... you lost...`);
 
 }
 
-const button = document.getElementById('start');
-button.addEventListener('click', playGame);
+const start = document.querySelector("#start");
+start.addEventListener("click", playGame);
