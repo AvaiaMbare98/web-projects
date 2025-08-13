@@ -19,7 +19,7 @@ function getComputerChoice() {
     }
 }
 
-function clash(human, computer) { //funzione che restituisce -1, 0 o 1: -1 punto per il computer, 0 pari, 1 punto dell'umano
+function clash(human, computer) { //funzione che restituisce -1, 0 o 1: -1 punto per il computer, 0 pari, 1 punto resetl'umano
     if(human === "Rock") {
 
         if(computer === "Rock")
@@ -53,6 +53,9 @@ function clash(human, computer) { //funzione che restituisce -1, 0 o 1: -1 punto
 }
 
 function playGame(){
+
+    document.body.removeChild(start);
+
     let score = 0;
     let humanScore = 0;
     let computerScore = 0;
@@ -64,28 +67,35 @@ function playGame(){
     const rock = document.createElement("button");
     rock.textContent = "I choose rock!";
     rock.setAttribute("id", "rock");
+
     const paper = document.createElement("button");
     paper.textContent = "I choose paper!";
     paper.setAttribute("id", "paper");
+
     const scissors = document.createElement("button");
     scissors.textContent = "I choose scissors!";
     scissors.setAttribute("id", "scissors");
-    const del = document.createElement("button");
-    del.textContent = "Reset";
-    del.setAttribute("id", "delete");
+
+    const reset = document.createElement("button");
+    reset.textContent = "Reset";
+    reset.setAttribute("id", "resetete");
 
     para.appendChild(rock);
     para.appendChild(paper);
     para.appendChild(scissors);
-    para.appendChild(del);
+    para.appendChild(reset);
 
     const results = document.createElement("div");
     para.appendChild(results);
 
-    del.addEventListener("click", () => {
+    reset.addEventListener("click", () => {
         while(results.firstChild){
             results.removeChild(results.lastChild);
         }
+        score = 0;
+        turn = 1;
+        humanScore = 0;
+        computerScore = 0;
     });
 
     rock.addEventListener("click", () => {
@@ -194,6 +204,10 @@ function playGame(){
                 winMessage.textContent = `Damn... computer won...`;
                 results.appendChild(winMessage);
             }
+        score = 0;
+        turn = 1;
+        humanScore = 0;
+        computerScore = 0;
         }
     });
 
