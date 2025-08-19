@@ -1,13 +1,11 @@
 const bigdiv = document.querySelector(".container");
+const btn = document.querySelector(".reset");
 const SCREEN_WIDTH = 500;
-const squarePerLine = 80;
-let widthSquare = SCREEN_WIDTH/squarePerLine;
-let totalSquares = (squarePerLine ** 2);
+const squarePerLine = 20;
+const widthSquare = SCREEN_WIDTH/squarePerLine;
+const totalSquares = (squarePerLine ** 2);
 
-console.log(totalSquares);
-console.log(widthSquare);
-
-
+//coloring the squares
 function applyStyle(target){
     if(target === bigdiv || target.classList.contains("horizontal")){
         return;
@@ -19,13 +17,20 @@ function applyStyle(target){
         "rgb(" + r + ", " + g + ", " + b + ")";
 }
 
-for(let i = 0; i < totalSquares; i++){ 
-    const div = document.createElement("div");
-    div.style.width = `${widthSquare}px`;
-    div.style.height = `${widthSquare}px`;
-    // div.classList.add("square");
-    bigdiv.appendChild(div);
+function createGrid(){
+    for(let i = 0; i < totalSquares; i++){ 
+        const div = document.createElement("div");
+        div.style.width = `${widthSquare}px`;
+        div.style.height = `${widthSquare}px`;
+        bigdiv.appendChild(div);
+    }
 }
+createGrid();
 
-
+btn.addEventListener("click", () => {
+    const squares = Array.from(bigdiv.children);
+    squares.forEach((element) => {
+        element.style.backgroundColor = "#FFFFFF";
+    });
+});
 bigdiv.addEventListener("mouseover", (e) => applyStyle(e.target));
