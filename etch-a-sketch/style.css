@@ -10,10 +10,11 @@ html{
     flex: 1 1 0;
     width: var(--widthBoard);
     height: var(--widthBoard);
+    box-sizing: border-box;
+    border: 1px solid black;
 }
 
 .container>div{
-    border: 1px solid black;
     box-sizing: border-box;
 }
 
@@ -21,4 +22,8 @@ html{
     display: flex;
     justify-content: center;
     margin-top: 50px;
+}
+
+.button>button{
+    margin: 10px 10px;
 }
