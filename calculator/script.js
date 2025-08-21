@@ -17,6 +17,9 @@ function multiply(a, b){
 }
 
 function divide(a, b){
+    if(b == 0){
+        return "Divide by zero";
+    }
     return a / b;
 }
 
@@ -37,8 +40,8 @@ function evaluate(array){
     const op1 = Number(array[0]);
     const op2 = Number(array[2]);
     const operator = array[1];
-    const selected = document.querySelectorAll(".hover");
-    selected.forEach((element) => element.classList.remove("hover"));
+    const selected = document.querySelectorAll(".selected");
+    selected.forEach((element) => element.classList.remove("selected"));
     return operate(op1, op2, operator);
 }
 
@@ -69,13 +72,19 @@ function main(){
 
             if(operationBuffer.length === 3){
                 const result = evaluate(operationBuffer).toString();
+                if (result === "Divide by zero"){
+                    display.textContent = "You cannot divide by zero!";
+                    operationBuffer = [];
+                    numString = '';
+                    return;
+                }
                 operationBuffer = [result];
                 numString = '';
                 // console.log(result);
                 display.textContent = `${result}`;
             }
 
-            button.classList.add("hover");
+            button.classList.add("selected");
             numString = ''; //resetta numString
             //aggiunge l'operatore al buffer
             operationBuffer[operationBuffer.length] = `${button.textContent}`;
@@ -93,10 +102,15 @@ function main(){
             return;
         }
         const result = evaluate(operationBuffer).toString();
+        if (result === "Divide by zero"){
+            display.textContent = "You cannot divide by zero!";
+            operationBuffer = [];
+            numString = '';
+            return;
+        }
         operationBuffer = [result];
         justEvaluated = true;
         numString = result;
-        // console.log(result);
         display.textContent = `${result}`;
 
     });
