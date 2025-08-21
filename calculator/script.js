@@ -2,6 +2,7 @@ const num = document.querySelectorAll(".number");
 const display = document.querySelector(".display");
 const operator = document.querySelectorAll(".operator");
 const equalsTo = document.querySelector(".equals-to");
+const clear = document.querySelector(".clear");
 
 function add(a, b){
     return a + b;
@@ -36,16 +37,19 @@ function evaluate(array){
     const op1 = Number(array[0]);
     const op2 = Number(array[2]);
     const operator = array[1];
+    const selected = document.querySelectorAll(".hover");
+    selected.forEach((element) => element.classList.remove("hover"));
     return operate(op1, op2, operator);
 }
 
 function main(){
-    let operationArray = [];
-    let operatorString = '';
+    let operationBuffer = []; //array che contiene operandi e operatori (max 3)
     let numString = '';
+    //flag per evitare che il contenuto di numString venga riscritto nel buffer
+    let = justEvaluated = false; 
 
     num.forEach((button) => {
-        button.addEventListener("click", () => {;
+        button.addEventListener("click", () => {
             numString += button.textContent;
             display.textContent = `${numString}`;
         });
@@ -56,31 +60,51 @@ function main(){
             if(!numString){
                 return;
             }
-            operationArray[operationArray.length] = `${numString}`;
-            console.log(operationArray);
+            if(justEvaluated){
+                operationBuffer = [];
+                justEvaluated = false;
+            }
+            operationBuffer[operationBuffer.length] = `${numString}`;
+            console.log(operationBuffer);
 
-            if(operationArray.length === 3){
-                const result = evaluate(operationArray).toString();
-                operationArray = [result];
+            if(operationBuffer.length === 3){
+                const result = evaluate(operationBuffer).toString();
+                operationBuffer = [result];
                 numString = '';
-                console.log(result);
+                // console.log(result);
                 display.textContent = `${result}`;
             }
 
             button.classList.add("hover");
             numString = ''; //resetta numString
-            operatorString = button.textContent;
-            console.log(operatorString);
-            operationArray[operationArray.length] = `${operatorString}`;
+            //aggiunge l'operatore al buffer
+            operationBuffer[operationBuffer.length] = `${button.textContent}`;
         });
     });
 
     equalsTo.addEventListener("click", () => {
-        if(operationArray.length < 3){
+        operationBuffer[operationBuffer.length] = `${numString}`;
+        if(operationBuffer.length < 3){
+            //se il numero di operandi è inferiore a tre, fa il flush del
+            //buffer per evitare bug ma mantiene numString per la 
+            //prossima operazione
+            display.textContent = `${numString}`;
+            operationBuffer = [];
             return;
         }
+        const result = evaluate(operationBuffer).toString();
+        operationBuffer = [result];
+        justEvaluated = true;
+        numString = result;
+        // console.log(result);
+        display.textContent = `${result}`;
 
+    });
 
+    clear.addEventListener("click", () => {
+        operationBuffer = [];
+        numString = '';
+        display.textContent = `0`;
     });
 }
 main();
