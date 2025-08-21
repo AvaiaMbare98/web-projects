@@ -33,3 +33,15 @@
 .operator{
     background-color: yellow;
 }
+
+.equals-to{
+    background-color: blanchedalmond;
+}
+
+.display{
+    text-align: end;
+}
+
+.hover{
+    background-color: aqua;
+}
